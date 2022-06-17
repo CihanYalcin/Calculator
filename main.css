@@ -53,3 +53,5 @@ height:100%;
 .btns{
     background-color: rgb(223, 162, 48);
 }
+ .btn:active{
+    transform: scale(0.95);}
