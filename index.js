@@ -22,8 +22,9 @@ document.querySelector(".delast").addEventListener("click",function(){
   islemEkranı.innerHTML=sayilar[sayilar.length-1];
   rakamlar.length=0
  ;
-}  else{islemEkranı.innerHTML=sayilar[sayilar.length-1];rakamlar.length=0;
- };});
+}  else if(sayilar.length===1){islemEkranı.innerHTML=sayilar[0];rakamlar.length=0;
+ }
+ ;});
 
 
 
@@ -42,6 +43,7 @@ document.querySelector(".virgül").addEventListener("click",function(){
 
 
     document.querySelector(".esit").addEventListener("click", function() {
+      if(sayilar.length>0 && rakamlar.length>0){
       sayilar.push(Number(rakamlar.join("")));
       esittir(sayilar[0],sayilar[1],islem);
       rakamlar.length=0;
@@ -49,7 +51,7 @@ document.querySelector(".virgül").addEventListener("click",function(){
       sayilar.push(sonsayi);
       ilkislem=false;
 
-    });
+    };})
 
 
 
@@ -57,11 +59,14 @@ document.querySelector(".virgül").addEventListener("click",function(){
       let text2=document.querySelectorAll(".islem")[i].innerHTML;
       
         document.querySelectorAll(".islem")[i].addEventListener("click", function(){ 
-         
-       if (ilkislem) {let sonrakam=Number(rakamlar.join(""));
-          sayilar.push(sonrakam);
-          }else{
-            sayilar.push(Number(rakamlar.join("")));
+    
+       if (ilkislem && rakamlar.length>0 ) {
+            let sonrakam=Number(rakamlar.join(""));
+            sayilar.push(sonrakam);  
+            rakamlar.length=0; 
+            ilkislem=false;
+           } else if (rakamlar.length>0){
+            sayilar.push(Number(rakamlar.join("")));  
             esittir(sayilar[0],sayilar[1],islem);
             rakamlar.length=0;
             sayilar.length=0;
